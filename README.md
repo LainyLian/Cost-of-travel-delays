@@ -18,12 +18,15 @@ The raw taxi GPS data utilized in our study are proprietary and were provided by
 
 ## Code
 
+
+## Environment
+
 Clone the repo
 ```
 git clone https://github.com/LainyLian/Cost-of-travel-delays.git
 ```
 
-Create a new python environment with python==3.9.12
+Create a new python environment
 ```
 conda create -n <env_name> python=3.9.12
 ```
