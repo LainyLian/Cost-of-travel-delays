@@ -13,9 +13,9 @@ A generalized linear model incorporating crash attributes, time, road network fe
 ## Data
 The raw taxi GPS data utilized in our study are proprietary and were provided by an information technology company under a strict non-disclosure agreement. This agreement explicitly prohibits the sharing of the raw data with any third parties. To comply with this agreement and protect the confidentiality of the data, we are unable to share the raw dataset in its entirety. However, to support the reproducibility and verification of our results, we have prepared an aggregated dataset that includes:
 
-(1) a test data for estimating speed based on map-matched GPS trajectories; 
+* a test data for estimating speed based on map-matched GPS trajectories; 
 
-(2) all aggregated data used in the regression analysis.
+* all aggregated data used in the regression analysis.
 
 
 ## Scripts
