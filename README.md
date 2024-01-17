@@ -16,13 +16,19 @@ The raw taxi GPS data utilized in our study are proprietary and were provided by
 
 
 
-## Code
-1. estimate_speed.ipynb
+## Scripts
+* estimate_speed.ipynb
+  
    This script interprets the map-matching result and estimates traffic speed based on the speed information recorded in the GPS records
-2. plot_travel_delays_by_categorical_variables.R
+  
+* plot_travel_delays_by_categorical_variables.R
+  
    This script plots the estimated travel delays by different categorical variables (Figure 7)
-3. regression_analysis.R
+
+* regression_analysis.R
+
    This script is the regression analysis
+  
 
 ## Environment
 
@@ -40,5 +46,3 @@ Install all required packages
 ```
 pip install -r requirements.txt
 ```
-
-
