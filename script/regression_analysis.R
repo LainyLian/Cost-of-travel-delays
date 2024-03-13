@@ -20,20 +20,17 @@ library(fitdistrplus)
 library(modelsummary)
 library(stargazer)
 
-setwd("path_to_the_script") # set the path
+setwd("PATH_TO_THE_SCRIPT") # set the path
 
 
 # Read the table of estimated travel delay per time slot (15min)
 
 varlong<-read.csv('../data/delay_per_time_slot.csv',header=T)
-
 varlong$peakhours<-as.character(varlong$peakhours)
-varlong$FRC<-as.character(varlong$FRC)
 varlong$daytype<-as.character(varlong$daytype)
 varlong$ST_LGT_good<-as.character(varlong$ST_LGT_good)
 varlong$Region<-as.character(varlong$Region)
-varlong$NO_VEH_2type<-as.character(varlong$NO_VEH_2type)
-varlong$fFRC<-factor(varlong$FRC)
+
 varlong$fSEVERITY<-factor(varlong$SEVERITY)
 varlong$fACC_NO<-factor(varlong$ACC_NO)
 varlong$roadwork<-as.character(varlong$roadwork)
@@ -75,15 +72,10 @@ model_crashrandomeffect <- list(
                                   data=varlong, family=gaussian(link="identity"))
 )
 
-qqnorm(resid(model_crashrandomeffect$CTRB))
-hist(resid(model_crashrandomeffect$CTRB))
-
 modelsummary(model_crashrandomeffect, shape = term ~ model+statistic,
              estimate="{estimate}{stars}",
              statistic = c("std.error"),
              stars = TRUE, output = "../output/regression_result_table4.docx")
-
-
 
 
 ##### 
@@ -94,7 +86,6 @@ modelsummary(model_crashrandomeffect, shape = term ~ model+statistic,
 var<-read.csv('../data/total_delay_per_crash.csv',header=T) # the most updated variable table
 
 var$peakhours<-as.character(var$peakhours)
-var$FRC<-as.character(var$FRC)
 var$FRC_string<-as.character(var$FRC_string)
 var$daytype<-as.character(var$daytype)
 var$ST_LGT_good<-as.character(var$ST_LGT_good)
@@ -110,18 +101,8 @@ var$hos_distance<-var$hos_distance/1000
 var$am_depot_distance<-var$am_depot_distance/1000 
 var$AADT<-var$AADT/1000 
 var$PedestrianExposure<-var$PedestrianExposure/1000
-
-var$fFRC<-factor(var$FRC) 
 var$fSEVERITY<-factor(var$SEVERITY)
 any(is.na(var))
-
-shortdf_td_sum15min_forprediction <- glm(traveldelay_15min_sum~relevel(factor(SEVERITY), ref = "Slight")+factor(IN_20M_JCN)+relevel(factor(ST_LGT_good), ref = "good")+
-                                           relevel(factor(collision), ref = "single-vehicle")+NO_VEH+NO_CSU+
-                                           relevel(factor(Region), ref = "HKI")+psn_distance+fs_distance+hos_distance+
-                                           factor(daytype)+factor(peakhours)+
-                                           factor(fFRC)+SPEED+AADT+PedestrianExposure+
-                                           AMD+BUS+CMF+COM+CUF+GOV+HNC+MUF+REM+RSF+SCH+TRH+TRS+food,
-                                         data=var, family=gaussian(link='log'),control=list(maxit=100), mustart=pmax(var$traveldelay_15min_sum,0.001)) # INSTR
 
 shortdf_td_sum15min_forprediction <- glm(traveldelay_15min_sum~NO_VEH+factor(heavey_involve)+NO_CSU+
                                            relevel(factor(SEVERITY), ref = "Slight")+relevel(factor(collision), ref = "single-vehicle")+
@@ -148,7 +129,6 @@ summary(shortdf_td_sum15min_forprediction)
 var2021<-read.csv('../data/variable_for_all_crashes_in_2021.csv',header=T)
 
 var2021$peakhours<-as.character(var2021$peakhours)
-var2021$FRC<-as.character(var2021$FRC)
 var2021$daytype<-as.character(var2021$daytype)
 var2021$ST_LGT_good<-as.character(var2021$ST_LGT_good)
 var2021$Region<-as.character(var2021$Region)
@@ -164,4 +144,4 @@ var2021$PedestrianExposure<-var2021$PedestrianExposure/1000
 # Predict
 var2021$prediction2021<-predict(shortdf_td_sum15min_forprediction, var2021, type='response')
 # Ouput the result
-write.csv(var2021, "../output/predicted_travel_delays_in_2021.csv", row.names=FALSE)
+write.csv(var2021, "../output/predicted_travel_delays_in_2021_localtest.csv", row.names=FALSE)

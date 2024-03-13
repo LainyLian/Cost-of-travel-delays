@@ -1,0 +1,48 @@
+Folder PATH listing for volume analytics
+Volume serial number is 8122-40AE
+V:.
+³   README.md
+³   requirements.txt
+³   tree.txt
+³   
+ÃÄÄÄdata
+³   ³   delay_per_time_slot.csv
+³   ³   total_delay_per_crash.csv
+³   ³   variable_for_all_crashes_in_2021.csv
+³   ³   
+³   ÀÄÄÄmap_matching_data
+³       ÃÄÄÄgps
+³       ³       gps_trj_2021-05-02_demo.csv
+³       ³       
+³       ÃÄÄÄmmresult
+³       ³   ÀÄÄÄ2021-05-02
+³       ³           stmatch_2021-05-02_demo.txt
+³       ³           
+³       ÀÄÄÄroad
+³               TomTomRoad2021_2326_seg_demo.cpg
+³               TomTomRoad2021_2326_seg_demo.dbf
+³               TomTomRoad2021_2326_seg_demo.prj
+³               TomTomRoad2021_2326_seg_demo.sbn
+³               TomTomRoad2021_2326_seg_demo.sbx
+³               TomTomRoad2021_2326_seg_demo.shp
+³               TomTomRoad2021_2326_seg_demo.shp.xml
+³               TomTomRoad2021_2326_seg_demo.shx
+³               
+ÃÄÄÄoutput
+³   ³   predicted_travel_delays_in_2021.csv
+³   ³   raincloud_collisiontype.png
+³   ³   raincloud_daytype.png
+³   ³   raincloud_FRCstring.png
+³   ³   raincloud_lightconditions.png
+³   ³   raincloud_Region.png
+³   ³   raincloud_severity.png
+³   ³   regression_result_table4.docx
+³   ³   
+³   ÀÄÄÄ2021-05-02
+³           5minspeed_RepeatedVehicle_2021-05-02_demo.csv
+³           
+ÀÄÄÄscript
+        estimate_speed.ipynb
+        plot_travel_delays_by_categorical_variables.R
+        regression_analysis.R
+        
